@@ -1,0 +1,6 @@
+.new-button {
+  background: green;
+  z-index: 100;
+  margin: 0 auto;
+  position: absolute;
+}
