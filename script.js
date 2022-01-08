@@ -2,12 +2,12 @@ addModal();
 
 function addModal() {
   const newBtn = document.createElement("button");
-  newBtn.innerHTML = "Open Notemaker";
+  newBtn.innerHTML = "CaNo";
   newBtn.classList.add("new-button");
   newBtn.setAttribute("id", "myBtn");
   newBtn.addEventListener("click", openModal);
 
-  let video = document.getElementsByTagName("VIDEO")[0];
+  let video = document.getElementsByClassName("ytp-right-controls")[0];
   video.parentNode.appendChild(newBtn);
 }
 
@@ -37,6 +37,9 @@ function clearScreen(element) {
 function openModal() {
   addScreen(document.body);
 
+  let video = document.getElementsByClassName("video-stream")[0];
+  video.pause();
+
   // Get the modal
   let modal = document.getElementById("myModal");
 
@@ -58,7 +61,6 @@ function openModal() {
 
     let iframeElt = document.createElement("iframe");
     iframeElt.src = `https://www.youtube.com/embed/${videoId}?start=${currentTime}&autoplay=1&showinfo=0&rel=0&fs=0&autohide=0`;
-    console.log(iframeElt.src);
     iframeElt.width = 560;
     iframeElt.height = 315;
     iframeElt.frameborder = 0;
