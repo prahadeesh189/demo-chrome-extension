@@ -50,9 +50,15 @@ function openModal() {
 
   // When the user clicks on the button, open the modal
   btn.onclick = function () {
+    let videoId = window.location.href.split("=")[1];
+
+    let currentTime =
+      document.getElementsByClassName("video-stream")[0].currentTime;
+    currentTime = Math.floor(currentTime);
+
     let iframeElt = document.createElement("iframe");
-    iframeElt.src =
-      "https://www.youtube.com/embed/9YffrCViTVk?start=50&autoplay=1&showinfo=0&rel=0&fs=0&autohide=0";
+    iframeElt.src = `https://www.youtube.com/embed/${videoId}?start=${currentTime}&autoplay=1&showinfo=0&rel=0&fs=0&autohide=0`;
+    console.log(iframeElt.src);
     iframeElt.width = 560;
     iframeElt.height = 315;
     iframeElt.frameborder = 0;
