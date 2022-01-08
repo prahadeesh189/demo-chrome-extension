@@ -61,23 +61,20 @@ function openModal() {
 
     let iframeElt = document.createElement("iframe");
     iframeElt.src = `https://www.youtube.com/embed/${videoId}?start=${currentTime}&autoplay=1&showinfo=0&rel=0&fs=0&autohide=0`;
-    iframeElt.width = 560;
-    iframeElt.height = 315;
+
     iframeElt.frameborder = 0;
     iframeElt.setAttribute("id", "my-video-frame");
     modalContent.appendChild(iframeElt);
 
     modal.style.display = "block";
 
-    $('.modal-content').css('overflow', 'hidden');
-    $('.modal-content').css('scroll', 'hidden');
     
 
       // notepad
 
     $('.modal-content').append(`
 
-      <iframe id="myframe" name="myframe" style="width: 100%; height: 100%;"></iframe>  
+      <iframe id="myframe" name="myframe" style="width: 100%; height: 95%;"></iframe>  
 
     `);
 
