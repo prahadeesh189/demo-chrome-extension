@@ -1,8 +1,6 @@
-addModal(document.body);
+addModal();
 
-function addModal(element) {
-  addScreen(element);
-
+function addModal() {
   const newBtn = document.createElement("button");
   newBtn.innerHTML = "Open Notemaker";
   newBtn.classList.add("new-button");
@@ -31,7 +29,14 @@ function addScreen(element) {
   element.appendChild(modalElt);
 }
 
+function clearScreen(element) {
+  let vid = document.getElementById("my-video-frame");
+  vid.remove();
+}
+
 function openModal() {
+  addScreen(document.body);
+
   // Get the modal
   let modal = document.getElementById("myModal");
 
@@ -42,38 +47,32 @@ function openModal() {
   let span = document.getElementsByClassName("close")[0];
 
   let modalContent = document.getElementsByClassName("modal-content")[0];
-  modalContent.appendChild(document.getElementsByTagName("VIDEO")[0]);
 
   // When the user clicks on the button, open the modal
   btn.onclick = function () {
+    let iframeElt = document.createElement("iframe");
+    iframeElt.src =
+      "https://www.youtube.com/embed/9YffrCViTVk?start=50&autoplay=1&showinfo=0&rel=0&fs=0&autohide=0";
+    iframeElt.width = 560;
+    iframeElt.height = 315;
+    iframeElt.frameborder = 0;
+    iframeElt.setAttribute("id", "my-video-frame");
+    modalContent.appendChild(iframeElt);
+
     modal.style.display = "block";
   };
 
   // When the user clicks on <span> (x), close the modal
   span.onclick = function () {
+    clearScreen(document.body);
     modal.style.display = "none";
   };
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function (event) {
     if (event.target == modal) {
+      clearScreen(document.body);
       modal.style.display = "none";
     }
   };
 }
-
-// function replaceText(element) {
-//   if (element.hasChildNodes()) {
-//     element.childNodes.forEach(replaceText);
-//   } else if (element.nodeType === Text.TEXT_NODE) {
-//     if (element.textContent.match(/corona/gi)) {
-//       const newElt = document.createElement("span");
-
-//       newElt.innerHTML = element.textContent.replace(
-//         /corona/gi,
-//         "<span style='background-color: lightblue;'>OMICRON DUDE </span>"
-//       );
-//       element.replaceWith(newElt);
-//     }
-//   }
-// }
