@@ -376,8 +376,9 @@ function openModal() {
     
 
     $("#myframe").contents().find('html body button#pdf').on('click', (event) => {
-
-      console.log( window );
+      
+        $("#myframe").contents()[0].querySelector('iframe').contentWindow.focus();
+        $("#myframe").contents()[0].querySelector('iframe').contentWindow.print();
 
     });
 

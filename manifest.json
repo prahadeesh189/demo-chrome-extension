@@ -2,9 +2,13 @@
   "manifest_version": 2,
   "name": "Campers Smart Notes",
   "version": "0.1.0",
+  
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": [
+        "https://*.google.com/*",
+        "https://*.youtube.com/*"
+      ],
       "js": ["jquery-3.6.0.min.js", "script.js"],
       "css": ["styles.css"]
     }
