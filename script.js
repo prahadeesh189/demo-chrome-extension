@@ -233,6 +233,7 @@ function openModal() {
             padding: 7px;
         }
 
+
       </style>
 
     `);
@@ -270,7 +271,7 @@ function openModal() {
                   </select>
                   <button data-tooltip="create link" class="tooltip button -regular" onclick="execCommandWithArg('createLink',prompt('Enter a URL','http://'));"><i class="fa fa-link"></i></button>
                   <button data-tooltip="remove link" class="tooltip button -regular" onclick="execCmd('unlink');"><i class="fa fa-unlink"></i></button>
-                  <button data-tooltip="insert image" class="tooltip button -regular" onclick="execCommandWithArg('insertImage',prompt('Enter the image URL',''));"><i class="far fa-images"></i></button>
+                  <button data-tooltip="insert image" id="pic" class="tooltip button -regular"><i class="far fa-images"></i></button>
                   <div class="button -regular inp">
                       <label for="color">Color:</label>
                       <input id="color" data-tooltip="color" class="tooltip inpColor" type="color" onchange="execCommandWithArg('foreColor',this.value)">
@@ -306,7 +307,7 @@ function openModal() {
           </div>
           
           <script type="text/javascript">
-            
+
             richTextField.document.designMode = 'On';
             
             let execCmd = (command) => {
@@ -317,6 +318,9 @@ function openModal() {
             let execCommandWithArg = (command, arg) => {
                 richTextField.document.execCommand(command, false, arg);
             }
+
+
+
           </script>
         
     `);
@@ -326,7 +330,43 @@ function openModal() {
 
 
 
+    $("#myframe").contents().find('html body button#pic').on('click', (event) => {
 
+      var player = $('iframe#my-video-frame').contents()[0].querySelector('.video-stream');
+
+
+      let time = player.currentTime;
+
+      // time = Math.floor(currentTime);
+
+      // console.log(time);
+      // let title="";
+      // let minutes = Math.floor(time / 60)
+      // time = Math.floor(time - (minutes * 60));
+      // let hours;
+      // if (minutes > 60) {
+      //   hours = Math.floor(minutes / 60)
+      //   minutes -= hours * 60;
+      //   title += hours + "-";
+      // }
+    
+      // title += minutes + "-" + time;
+      // title += extension;
+
+
+
+      var canvas = document.createElement("canvas");
+      canvas.width = 400;
+      canvas.height = 225;
+      canvas.getContext('2d').drawImage(player, 0, 0, 400, 225);
+    
+      var base64Canvas = canvas.toDataURL("image/jpeg");
+
+
+
+
+      $("#myframe").contents().find('html body div.if.container iframe').contents()[0].execCommand('insertImage', false, base64Canvas);
+    } );
 
 
 
